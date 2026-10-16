@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz GTA: San Andreas - Sua História</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+width: 100%;
+height: 100%;
+overflow: hidden;
+background-color: #1a1a1a;
+color: #fff;
+}
+
+.screen {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 20px;
+background: linear-gradient(135deg, #2c163a, #1a1a1a);
+transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+opacity: 0;
+pointer-events: none;
+transform: translateY(20px);
+}
+
+.screen.active {
+opacity: 1;
+pointer-events: auto;
+transform: translateY(0);
+}
+
+h1 {
+font-size: 2.5rem;
+margin-bottom: 20px;
+text-align: center;
+color: #f39c12;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+p {
+font-size: 1.2rem;
+margin-bottom: 30px;
+text-align: center;
+max-width: 600px;
+color: #ddd;
+}
+
+.btn {
+background-color: #f39c12;
+color: #1a1a1a;
+border: none;
+padding: 15px 30px;
+font-size: 1.1rem;
+font-weight: bold;
+border-radius: 8px;
+cursor: pointer;
+transition: background 0.3s, transform 0.2s;
+box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+margin: 10px;
+}
+
+.btn:hover {
+background-color: #e67e22;
+transform: scale(1.05);
+}
+
+.options-container {
+display: flex;
+flex-direction: column;
+gap: 15px;
+width: 100%;
+max-width: 500px;
+}
+
+.option-btn {
+background-color: #333;
+color: white;
+border: 2px solid #f39c12;
+padding: 20px;
+font-size: 1.1rem;
+border-radius: 10px;
+cursor: pointer;
+transition: background 0.3s, transform 0.2s;
+text-align: center;
+}
+
+.option-btn:hover {
+background-color: #f39c12;
+color: #1a1a1a;
+transform: translateY(-2px);
+}
+
+#result-text {
+background: rgba(0, 0, 0, 0.4);
+padding: 20px;
+border-radius: 10px;
+border-left: 5px solid #f39c12;
+margin-bottom: 20px;
+max-width: 700px;
+text-align: left;
+line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<!-- Tela Inicial -->
+<div id="screen-0" class="screen active">
+<h1>GTA: San Andreas</h1>
+<p>Descubra qual estilo de vida combina mais com você nas ruas de Los Santos, San Fierro e Las Venturas!</p>
+<button class="btn" onclick="nextScreen()">Iniciar Jornada</button>
+</div>
+
+<!-- Pergunta 1 -->
+<div id="screen-1" class="screen">
+<h1>Pergunta 1</h1>
+<p>Como você prefere se locomover pelas ruas de San Andreas?</p>
+<div class="options-container">
+<button class="option-btn" onclick="selectOption(1, 'Você prefere cruzar as ruas devagar, curtindo o som dos hidráulicos no seu Lowrider.')">Com um clássico Lowrider rebaixado ouvindo rádio.</button>
+<button class="option-btn" onclick="selectOption(1, 'Você gosta de sentir a adrenalina correndo com uma moto esportiva cortando o trânsito a toda velocidade.')">Com uma moto esportiva veloz ziguezagueando pelo trânsito.</button>
+</div>
+</div>
+
+<!-- Pergunta 2 -->
+<div id="screen-2" class="screen">
+<h1>Pergunta 2</h1>
+<p>Qual é o seu território favorito para passar o tempo?</p>
+<div class="options-container">
+<button class="option-btn" onclick="selectOption(2, 'Sua base é a Grove Street, sempre defendendo o bairro e a família.')">As ruas humildes e agitadas de Ganton, junto à Grove Street.</button>
+<button class="option-btn" onclick="selectOption(2, 'Você prefere o glamour, as luzes neon e a agitação dos cassinos de Las Venturas.')">Os cassinos luxuosos e as luzes neon de Las Venturas.</button>
+</div>
+</div>
+
+<!-- Pergunta 3 -->
+<div id="screen-3" class="screen">
+<h1>Pergunta 3</h1>
+<p>Qual atividade você escolheria para relaxar após uma missão difícil?</p>
+<div class="options-container">
+<button class="option-btn" onclick="selectOption(3, 'Você adora visitar uma lanchonete Cluckin\' Bell para comer um lanche reforçado.')">Comprar um lanche reforçado em uma lanchonete local.</button>
+<button class="option-btn" onclick="selectOption(3, 'Você prefere passar horas na academia personalizando o físico e aprendendo novos golpes.')">Treinar pesado na academia para encarar qualquer desafio.</button>
+</div>
+</div>
+
+<!-- Pergunta 4 -->
+<div id="screen-4" class="screen">
+<h1>Pergunta 4</h1>
+<p>Como você lida com uma gangue rival cruzando o seu caminho?</p>
+<div class="options-container">
+<button class="option-btn" onclick="selectOption(4, 'Você prefere resolver tudo na base da diplomacia e planejamento estratégico antes de agir.')">Prefere manter a cautela e planejar cada passo estrategicamente.</button>
+<button class="option-btn" onclick="selectOption(4, 'Você parte para o confronto direto sem pensar duas vezes para impor respeito.')">Vai direto para o confronto direto para mostrar quem manda.</button>
+</div>
+</div>
+
+<!-- Pergunta 5 -->
+<div id="screen-5" class="screen">
+<h1>Pergunta 5</h1>
+<p>Qual é o seu objetivo final no estado de San Andreas?</p>
+<div class="options-container">
+<button class="option-btn" onclick="selectOption(5, 'Seu maior foco é construir um império de negócios e dominar todas as frentes.')">Dominar o submundo e construir um império financeiro.</button>
+<button class="option-btn" onclick="selectOption(5, 'Seu maior valor é manter a união e o respeito entre os amigos e aliados.')">Garantir a lealdade e a proteção da sua família e amigos.</button>
+</div>
+</div>
+
+<!-- Tela Final (Resultado) -->
+<div id="screen-6" class="screen">
+<h1>Sua Trajetória em San Andreas</h1>
+<div id="result-text"></div>
+<button class="btn" onclick="restartQuiz()">Jogar Novamente</button>
+</div>
+
+<script>
+let currentScreen = 0;
+const answers = [];
+
+function showScreen(screenIndex) {
+document.querySelectorAll('.screen').forEach(screen => {
+screen.classList.remove('active');
+});
+document.getElementById(`screen-${screenIndex}`).classList.add('active');
+}
+
+function nextScreen() {
+currentScreen++;
+showScreen(currentScreen);
+}
+
+function selectOption(questionNumber, answerText) {
+answers[questionNumber - 1] = answerText;
+
+if (currentScreen < 5) {
+currentScreen++;
+showScreen(currentScreen);
+}
+
+if (currentScreen === 5) {
+generateResult();
+currentScreen++;
+showScreen(currentScreen);
+}
+}
+
+function generateResult() {
+const resultContainer = document.getElementById('result-text');
+resultContainer.innerHTML = `
+<p style="text-align: left; margin-bottom: 10px;"><strong>Resumo da sua vida em Los Santos:</strong></p>
+<p style="text-align: left; margin-bottom: 8px;">🚗 ${answers[0]}</p>
+<p style="text-align: left; margin-bottom: 8px;">📍 ${answers[1]}</p>
+<p style="text-align: left; margin-bottom: 8px;">🍔 ${answers[2]}</p>
+<p style="text-align: left; margin-bottom: 8px;">⚔️ ${answers[3]}</p>
+<p style="text-align: left; margin-bottom: 0;">🏆 ${answers[4]}</p>
+`;
+}
+
+function restartQuiz() {
+currentScreen = 0;
+answers.length = 0;
+showScreen(currentScreen);
+}
+</script>
+</body>
+</html>
